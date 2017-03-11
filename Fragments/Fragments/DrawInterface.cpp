@@ -38,6 +38,10 @@ bool DrawContext::PutPixel(int x, int y, unsigned color)
 {
 	int height = FreeImage_GetHeight(pCanvas_);
 	int width = FreeImage_GetWidth(pCanvas_);
+	if(x < 0 || x >= width || y < 0 || y >= height)
+	{
+		return true;
+	}
 	int bytespp = FreeImage_GetLine(pCanvas_) / FreeImage_GetWidth(pCanvas_);
 	BYTE *bits = FreeImage_GetScanLine(pCanvas_, y);
 	bits = &bits[bytespp*x];
